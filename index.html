@@ -3,497 +3,781 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Abdullah Handicraft - Shop Manager</title>
+<title>Abdullah Handicraft</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f7f3ee;
-color:#292522;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f3ee;
+  color:#292522;
 }
 
 header{
-background:#292522;
-color:white;
-padding:28px 18px;
-text-align:center;
+  background:#292522;
+  color:#fff;
+  padding:30px 18px;
+  text-align:center;
 }
 
 header h1{
-margin:0;
-font-size:28px;
+  margin:0;
+  font-size:30px;
 }
 
 header p{
-margin:7px 0 0;
-color:#ddd;
+  margin:8px 0 0;
+  color:#ddd;
+}
+
+nav{
+  background:#fff;
+  padding:10px;
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 2px 10px #0001;
+}
+
+nav button{
+  white-space:nowrap;
+  background:#eee7df;
+  border:0;
+  padding:10px 15px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+nav button.active{
+  background:#292522;
+  color:white;
 }
 
 .container{
-max-width:1000px;
-margin:auto;
-padding:18px;
+  max-width:1000px;
+  margin:auto;
+  padding:18px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
 }
 
 .card{
-background:white;
-padding:20px;
-margin-bottom:18px;
-border-radius:18px;
-box-shadow:0 5px 20px rgba(0,0,0,.07);
+  background:white;
+  padding:20px;
+  margin-bottom:18px;
+  border-radius:18px;
+  box-shadow:0 5px 20px #0000000d;
 }
 
 h2{
-margin-top:0;
+  margin-top:0;
 }
 
-input,
-select{
-width:100%;
-padding:13px;
-margin:6px 0;
-border:1px solid #ddd4cb;
-border-radius:10px;
-font-size:15px;
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  margin:6px 0;
+  border:1px solid #ddd4cb;
+  border-radius:10px;
+  font-size:15px;
 }
 
 button{
-border:none;
-border-radius:10px;
-padding:12px 16px;
-margin:6px 4px 0 0;
-font-weight:bold;
-cursor:pointer;
+  border:0;
+  border-radius:10px;
+  padding:11px 15px;
+  margin:5px 3px 0 0;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .primary{
-background:#292522;
-color:white;
+  background:#292522;
+  color:white;
 }
 
 .secondary{
-background:#eee7df;
-color:#292522;
+  background:#eee7df;
+  color:#292522;
+}
+
+.whatsapp{
+  background:#25D366;
+  color:white;
 }
 
 .danger{
-background:#ead8d3;
-color:#722b22;
+  background:#ead8d3;
+  color:#722b22;
 }
 
 .stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
 }
 
 .stat{
-background:#f5f1ec;
-padding:16px;
-border-radius:14px;
-text-align:center;
+  background:#f5f1ec;
+  padding:17px;
+  border-radius:14px;
+  text-align:center;
+}
+
+.stat span{
+  display:block;
+  color:#777;
+  font-size:13px;
 }
 
 .stat strong{
-display:block;
-font-size:24px;
-margin-top:5px;
+  display:block;
+  font-size:23px;
+  margin-top:6px;
 }
 
-.order{
-border:1px solid #e5ddd5;
-border-radius:14px;
-padding:16px;
-margin-top:12px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.order h3{
-margin:0 0 8px;
+.product{
+  border:1px solid #e5ddd5;
+  border-radius:15px;
+  padding:14px;
+}
+
+.product img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  border-radius:12px;
+  background:#eee;
+}
+
+.product-name{
+  font-size:19px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.price{
+  font-size:21px;
+  font-weight:bold;
+  margin:7px 0;
+}
+
+.detail{
+  color:#625b55;
+  margin:5px 0;
+}
+
+.badge{
+  display:inline-block;
+  background:#eee7df;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.order,.customer{
+  border:1px solid #e5ddd5;
+  border-radius:14px;
+  padding:16px;
+  margin-top:12px;
 }
 
 .status{
-display:inline-block;
-padding:5px 10px;
-border-radius:20px;
-background:#eee7df;
-font-size:12px;
-margin-top:7px;
-}
-
-.total{
-font-size:20px;
-font-weight:bold;
-margin-top:8px;
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#eee7df;
+  font-size:12px;
+  margin-top:6px;
 }
 
 .reply{
-background:#f5f1ec;
-padding:16px;
-border-radius:12px;
-white-space:pre-wrap;
-line-height:1.6;
-min-height:120px;
+  background:#f5f1ec;
+  padding:16px;
+  border-radius:12px;
+  white-space:pre-wrap;
+  line-height:1.6;
+  min-height:120px;
 }
 
 .empty{
-color:#777;
-padding:10px 0;
+  color:#777;
+  padding:15px 0;
 }
 
 footer{
-text-align:center;
-padding:25px;
-color:#777;
-font-size:13px;
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-.stats{
-grid-template-columns:1fr;
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
-
-}
-
 </style>
 </head>
 
 <body>
 
-
 <header>
-
-<h1>Abdullah Handicraft</h1>
-
-<p>Smart Shop Manager • Version 3</p>
-
+  <h1>Abdullah Handicraft</h1>
+  <p>Shop Manager</p>
 </header>
 
+<nav>
+  <button class="active" onclick="showPage('dashboard',this)">📊 Dashboard</button>
+  <button onclick="showPage('products',this)">🛍️ Products</button>
+  <button onclick="showPage('orders',this)">📦 Orders</button>
+  <button onclick="showPage('customers',this)">👥 Customers</button>
+  <button onclick="showPage('messages',this)">💬 Messages</button>
+</nav>
 
 <div class="container">
 
+<!-- DASHBOARD -->
 
-<!-- SALES SUMMARY -->
+<section id="dashboard" class="page active">
 
-<section class="card">
+<div class="card">
+<h2>Welcome to Abdullah Handicraft 👋</h2>
+<p>Manage your products, customers and orders from one place.</p>
+</div>
 
-<h2>📊 Shop Summary</h2>
+<div class="card">
+<h2>📊 Dashboard</h2>
 
 <div class="stats">
 
 <div class="stat">
-
-Orders
-
-<strong id="totalOrders">
-0
-</strong>
-
+<span>Products</span>
+<strong id="statProducts">0</strong>
 </div>
-
 
 <div class="stat">
-
-Confirmed
-
-<strong id="confirmedOrders">
-0
-</strong>
-
+<span>Customers</span>
+<strong id="statCustomers">0</strong>
 </div>
-
 
 <div class="stat">
-
-Sales
-
-<strong id="totalSales">
-₹0
-</strong>
-
+<span>Orders</span>
+<strong id="statOrders">0</strong>
 </div>
 
+<div class="stat">
+<span>Total Sales</span>
+<strong id="statSales">₹0</strong>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h2>✨ Your Shop</h2>
+<p><b>Dresses</b> • <b>Bedsheets</b> • <b>Sarees</b> • <b>Pillow Covers</b> • <b>Kurti</b> • <b>Plazo Sets</b></p>
 </div>
 
 </section>
 
 
+<!-- PRODUCTS -->
 
-<!-- ADD ORDER -->
+<section id="products" class="page">
 
-<section class="card">
+<div class="card">
 
-<h2>➕ Create New Order</h2>
-
-
-<input
-id="customerName"
-placeholder="Customer name"
->
-
+<h2>🛍️ Product Catalog</h2>
 
 <input
-id="customerPhone"
-placeholder="Customer WhatsApp number"
+id="productSearch"
+placeholder="Search products..."
+oninput="displayProducts()"
 >
 
-
-<select id="orderProduct">
-
-<option value="">
-Select product
-</option>
-
+<select id="productFilter" onchange="displayProducts()">
+<option value="all">All Categories</option>
+<option>Dresses</option>
+<option>Bedsheets</option>
+<option>Sarees</option>
+<option>Pillow Covers</option>
+<option>Kurti</option>
+<option>Plazo Set</option>
 </select>
 
+<div id="productList" class="grid"></div>
 
-<input
-id="quantity"
-type="number"
-value="1"
-min="1"
-placeholder="Quantity"
->
+</div>
 
 
-<select id="orderStatus">
+<div class="card">
 
-<option value="Pending">
-Pending
-</option>
+<h2>➕ Add Product</h2>
 
-<option value="Confirmed">
-Confirmed
-</option>
+<input id="pName" placeholder="Product name">
 
-<option value="Delivered">
-Delivered
-</option>
-
+<select id="pCategory">
+<option>Dresses</option>
+<option>Bedsheets</option>
+<option>Sarees</option>
+<option>Pillow Covers</option>
+<option>Kurti</option>
+<option>Plazo Set</option>
 </select>
 
+<input id="pPrice" type="number" placeholder="Price ₹">
 
-<button
-class="primary"
-onclick="createOrder()"
->
+<input id="pMaterial" placeholder="Material / Fabric">
 
-Create Order
+<input id="pStock" type="number" min="0" placeholder="Stock quantity">
 
+<input id="pImage" placeholder="Product image URL (optional)">
+
+<button class="primary" onclick="addProduct()">
+Add Product
 </button>
 
+</div>
 
 </section>
-
 
 
 <!-- ORDERS -->
 
-<section class="card">
+<section id="orders" class="page">
 
-<h2>📦 Orders</h2>
+<div class="card">
 
+<h2>📦 Create Order</h2>
+
+<input id="customerName" placeholder="Customer name">
+
+<input id="customerPhone" placeholder="WhatsApp number">
+
+<select id="orderProduct">
+<option value="">Select product</option>
+</select>
+
+<input
+id="orderQuantity"
+type="number"
+min="1"
+value="1"
+placeholder="Quantity"
+>
+
+<select id="orderStatus">
+<option>Pending</option>
+<option>Confirmed</option>
+<option>Delivered</option>
+</select>
+
+<button class="primary" onclick="createOrder()">
+Create Order
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 Order History</h2>
 
 <input
 id="orderSearch"
-placeholder="Search customer or product..."
+placeholder="Search orders..."
 oninput="displayOrders()"
 >
 
+<div id="orderList"></div>
 
-<div id="orders"></div>
-
+</div>
 
 </section>
 
 
+<!-- CUSTOMERS -->
 
-<!-- WHATSAPP -->
+<section id="customers" class="page">
 
-<section class="card">
+<div class="card">
 
-<h2>💬 WhatsApp Order Message</h2>
+<h2>👥 Customers</h2>
 
-
-<div
-id="reply"
-class="reply"
+<input
+id="customerSearch"
+placeholder="Search customers..."
+oninput="displayCustomers()"
 >
 
-Select an order to generate a message.
+<div id="customerList"></div>
 
 </div>
 
+</section>
 
-<button
-class="primary"
-onclick="copyReply()"
->
 
-📋 Copy Message
+<!-- MESSAGES -->
 
+<section id="messages" class="page">
+
+<div class="card">
+
+<h2>💬 Customer Message</h2>
+
+<div id="messageBox" class="reply">
+Select an order from the Orders section.
+</div>
+
+<button class="primary" onclick="copyMessage()">
+📋 Copy
 </button>
 
-
-</section>
-
+<button class="whatsapp" onclick="openWhatsApp()">
+📱 Open WhatsApp
+</button>
 
 </div>
 
+</section>
 
+</div>
 
 <footer>
-
 © 2026 Abdullah Handicraft
-
 </footer>
-
 
 
 <script>
 
-
-/* ==============================
-   DATABASE
-============================== */
-
+/* =========================
+   DATA
+========================= */
 
 let products =
-JSON.parse(
-localStorage.getItem("abdullahProducts")
-) || [
+JSON.parse(localStorage.getItem("AH_products")) || [
 
 {
 name:"Cotton Light Dress",
 category:"Dresses",
 price:350,
-fabric:"Cotton fabric",
-top:"2.25 meters",
-bottom:"2.25 meters",
-dupatta:"2.25 meters",
-stock:"Available"
+material:"Cotton fabric",
+stock:10,
+image:""
 }
 
 ];
 
-
 let orders =
-JSON.parse(
-localStorage.getItem("abdullahOrders")
-) || [];
+JSON.parse(localStorage.getItem("AH_orders")) || [];
 
+let customers =
+JSON.parse(localStorage.getItem("AH_customers")) || [];
 
 let selectedOrder=null;
 
 
-
-/* ==============================
+/* =========================
    SAVE
-============================== */
+========================= */
 
-
-function saveProducts(){
+function saveData(){
 
 localStorage.setItem(
-"abdullahProducts",
+"AH_products",
 JSON.stringify(products)
 );
 
-}
-
-
-function saveOrders(){
+localStorage.setItem(
+"AH_orders",
+JSON.stringify(orders)
+);
 
 localStorage.setItem(
-"abdullahOrders",
-JSON.stringify(orders)
+"AH_customers",
+JSON.stringify(customers)
 );
 
 }
 
 
+/* =========================
+   PAGE NAVIGATION
+========================= */
 
-/* ==============================
-   PRODUCT DROPDOWN
-============================== */
+function showPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(page)
+.classList.add("active");
+
+document.querySelectorAll("nav button")
+.forEach(b=>b.classList.remove("active"));
+
+button.classList.add("active");
+
+}
 
 
-function loadProducts(){
+/* =========================
+   PRODUCTS
+========================= */
 
-const select=
-document.getElementById("orderProduct");
+function displayProducts(){
 
-select.innerHTML=
-'<option value="">Select product</option>';
+const list=
+document.getElementById("productList");
+
+const search=
+document.getElementById("productSearch")
+.value.toLowerCase();
+
+const filter=
+document.getElementById("productFilter")
+.value;
+
+const filtered=
+products.filter(p=>{
+
+let matchesSearch=
+p.name.toLowerCase().includes(search);
+
+let matchesCategory=
+filter==="all" || p.category===filter;
+
+return matchesSearch && matchesCategory;
+
+});
 
 
-products.forEach((product,index)=>{
+if(filtered.length===0){
 
-const option=
-document.createElement("option");
+list.innerHTML=
+'<div class="empty">No products found.</div>';
 
-option.value=index;
+return;
 
-option.textContent=
-`${product.name} - ₹${product.price}`;
+}
 
-select.appendChild(option);
+
+list.innerHTML="";
+
+
+filtered.forEach(product=>{
+
+const index=products.indexOf(product);
+
+const image=
+product.image
+?
+`<img src="${escapeHTML(product.image)}"
+onerror="this.style.display='none'">`
+:
+"";
+
+
+let stockText;
+
+if(product.stock===0){
+
+stockText=
+'<div style="color:#b3261e;font-weight:bold">Out of stock</div>';
+
+}
+else if(product.stock<=3){
+
+stockText=
+`<div style="color:#c57a00;font-weight:bold">
+Low stock: ${product.stock}
+</div>`;
+
+}
+else{
+
+stockText=
+`<div style="color:green;font-weight:bold">
+Stock: ${product.stock}
+</div>`;
+
+}
+
+
+const div=document.createElement("div");
+
+div.className="product";
+
+div.innerHTML=`
+
+${image}
+
+<div class="product-name">
+${escapeHTML(product.name)}
+</div>
+
+<div class="badge">
+${escapeHTML(product.category)}
+</div>
+
+<div class="price">
+₹${product.price.toLocaleString("en-IN")}
+</div>
+
+<div class="detail">
+🧵 ${escapeHTML(product.material || "Material not specified")}
+</div>
+
+${stockText}
+
+<button
+class="danger"
+onclick="deleteProduct(${index})">
+Delete
+</button>
+
+`;
+
+list.appendChild(div);
 
 });
 
 }
 
 
+/* =========================
+   ADD PRODUCT
+========================= */
 
-/* ==============================
+function addProduct(){
+
+const name=
+document.getElementById("pName").value.trim();
+
+const category=
+document.getElementById("pCategory").value;
+
+const price=
+Number(document.getElementById("pPrice").value);
+
+const material=
+document.getElementById("pMaterial").value.trim();
+
+const stock=
+Number(document.getElementById("pStock").value);
+
+const image=
+document.getElementById("pImage").value.trim();
+
+
+if(!name || !price){
+
+alert("Please enter product name and price.");
+
+return;
+
+}
+
+
+products.push({
+
+name,
+category,
+price,
+material,
+stock,
+image
+
+});
+
+
+saveData();
+
+clearProductForm();
+
+refreshAll();
+
+alert("Product added successfully! 🎉");
+
+}
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+function deleteProduct(index){
+
+if(!confirm("Delete this product?")) return;
+
+products.splice(index,1);
+
+saveData();
+
+refreshAll();
+
+}
+
+
+/* =========================
    CREATE ORDER
-============================== */
-
+========================= */
 
 function createOrder(){
 
-const customerName=
+const name=
 document.getElementById("customerName")
 .value.trim();
-
 
 const phone=
 document.getElementById("customerPhone")
 .value.trim();
 
-
 const productIndex=
 document.getElementById("orderProduct")
 .value;
 
-
 const quantity=
 Number(
-document.getElementById("quantity")
-.value
+document.getElementById("orderQuantity").value
 );
 
-
 const status=
-document.getElementById("orderStatus")
-.value;
+document.getElementById("orderStatus").value;
 
 
 if(
-!customerName ||
-!productIndex ||
-!quantity
+!name ||
+productIndex==="" ||
+quantity<1
 ){
 
 alert(
-"Please enter customer name, product and quantity."
+"Please enter customer, product and quantity."
 );
 
 return;
@@ -505,109 +789,138 @@ const product=
 products[productIndex];
 
 
-const total=
-product.price * quantity;
+if(!product){
 
-
-const order={
-
-id:
-Date.now(),
-
-customer:
-customerName,
-
-phone:
-phone,
-
-product:
-product.name,
-
-price:
-product.price,
-
-quantity:
-quantity,
-
-total:
-total,
-
-status:
-status,
-
-date:
-new Date().toLocaleDateString("en-IN")
-
-};
-
-
-orders.unshift(order);
-
-
-saveOrders();
-
-
-displayOrders();
-
-
-updateStats();
-
-
-clearOrderForm();
-
-
-alert(
-"Order created successfully! 🎉"
-);
-
-}
-
-
-
-/* ==============================
-   DISPLAY ORDERS
-============================== */
-
-
-function displayOrders(){
-
-const container=
-document.getElementById("orders");
-
-
-const search=
-document.getElementById("orderSearch")
-.value
-.toLowerCase();
-
-
-const filtered=
-orders.filter(order=>
-
-order.customer
-.toLowerCase()
-.includes(search)
-
-||
-
-order.product
-.toLowerCase()
-.includes(search)
-
-);
-
-
-if(filtered.length===0){
-
-container.innerHTML=
-'<div class="empty">No orders found.</div>';
+alert("Product not found.");
 
 return;
 
 }
 
 
-container.innerHTML="";
+if(product.stock<quantity){
+
+alert(
+`Only ${product.stock} item(s) are available.`
+);
+
+return;
+
+}
+
+
+const total=
+product.price*quantity;
+
+
+/* Reduce stock */
+
+product.stock-=quantity;
+
+
+/* Customer */
+
+let customer=
+customers.find(c=>
+c.phone &&
+phone &&
+c.phone===phone
+);
+
+
+if(!customer){
+
+customer={
+name:name,
+phone:phone,
+orders:0,
+spent:0
+};
+
+customers.push(customer);
+
+}
+
+
+customer.name=name;
+
+customer.orders++;
+
+customer.spent+=total;
+
+
+/* Order */
+
+orders.unshift({
+
+id:Date.now(),
+
+customer:name,
+
+phone:phone,
+
+product:product.name,
+
+quantity:quantity,
+
+price:product.price,
+
+total:total,
+
+status:status,
+
+date:new Date()
+.toLocaleDateString("en-IN")
+
+});
+
+
+saveData();
+
+clearOrderForm();
+
+refreshAll();
+
+alert("Order created! 🎉");
+
+}
+
+
+/* =========================
+   DISPLAY ORDERS
+========================= */
+
+function displayOrders(){
+
+const list=
+document.getElementById("orderList");
+
+const search=
+document.getElementById("orderSearch")
+.value.toLowerCase();
+
+
+const filtered=
+orders.filter(o=>
+
+o.customer.toLowerCase().includes(search)
+||
+o.product.toLowerCase().includes(search)
+
+);
+
+
+if(filtered.length===0){
+
+list.innerHTML=
+'<div class="empty">No orders yet.</div>';
+
+return;
+
+}
+
+
+list.innerHTML="";
 
 
 filtered.forEach(order=>{
@@ -615,41 +928,34 @@ filtered.forEach(order=>{
 const index=
 orders.indexOf(order);
 
-
 const div=
 document.createElement("div");
 
-
 div.className="order";
-
 
 div.innerHTML=`
 
-<h3>
+<strong>
 👤 ${escapeHTML(order.customer)}
-</h3>
+</strong>
 
-<div>
+<div class="detail">
 📱 ${escapeHTML(order.phone || "No number")}
 </div>
 
-<div>
+<div class="detail">
 🛍️ ${escapeHTML(order.product)}
 </div>
 
-<div>
+<div class="detail">
 🔢 Quantity: ${order.quantity}
 </div>
 
-<div>
-💵 Price: ₹${order.price}
+<div class="price">
+₹${order.total.toLocaleString("en-IN")}
 </div>
 
-<div class="total">
-Total: ₹${order.total}
-</div>
-
-<div>
+<div class="detail">
 📅 ${order.date}
 </div>
 
@@ -661,109 +967,87 @@ ${escapeHTML(order.status)}
 
 <button
 class="primary"
-onclick="generateOrderMessage(${index})"
->
-
-💬 WhatsApp Message
-
+onclick="generateMessage(${index})">
+💬 Message
 </button>
-
 
 <button
 class="secondary"
-onclick="changeStatus(${index})"
->
-
-🔄 Change Status
-
+onclick="changeStatus(${index})">
+🔄 Status
 </button>
-
 
 <button
 class="danger"
-onclick="deleteOrder(${index})"
->
-
-🗑 Delete
-
+onclick="deleteOrder(${index})">
+Delete
 </button>
 
 `;
 
-
-container.appendChild(div);
+list.appendChild(div);
 
 });
 
 }
 
 
+/* =========================
+   GENERATE MESSAGE
+========================= */
 
-/* ==============================
-   WHATSAPP MESSAGE
-============================== */
+function generateMessage(index){
 
+selectedOrder=orders[index];
 
-function generateOrderMessage(index){
-
-selectedOrder=
-orders[index];
-
-
-const order=
-selectedOrder;
-
+const o=selectedOrder;
 
 const message=
+`Hi ${o.customer} 😊
 
-`Hi ${order.customer} 😊
+Thank you for shopping with Abdullah Handicraft! 🛍️
 
-Thank you for your order from Abdullah Handicraft! 🛍️
+Order details:
 
-Product: ${order.product}
-Quantity: ${order.quantity}
-Total: ₹${order.total}
+Product: ${o.product}
+Quantity: ${o.quantity}
+Total: ₹${o.total}
 
-Order status: ${order.status}
+Order status: ${o.status}
 
-Thank you for shopping with us! ❤️`;
-
-
-document.getElementById("reply")
-.textContent=
-message;
+Thank you for choosing Abdullah Handicraft! ❤️`;
 
 
-document.getElementById("reply")
-.scrollIntoView({
-behavior:"smooth",
-block:"center"
-});
+document.getElementById("messageBox")
+.textContent=message;
+
+
+/* Go to message page */
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById("messages")
+.classList.add("active");
 
 }
 
 
-
-/* ==============================
+/* =========================
    COPY MESSAGE
-============================== */
+========================= */
 
-
-async function copyReply(){
+async function copyMessage(){
 
 const text=
-document.getElementById("reply")
+document.getElementById("messageBox")
 .textContent;
 
-
 if(
-text===
-"Select an order to generate a message."
+text==="Select an order from the Orders section."
 ){
 
-alert(
-"Please select an order first."
-);
+alert("Select an order first.");
 
 return;
 
@@ -774,34 +1058,73 @@ try{
 
 await navigator.clipboard.writeText(text);
 
-alert(
-"Message copied! 📋"
-);
+alert("Message copied! 📋");
 
 }
 
-catch(error){
+catch(e){
 
-alert(
-"Copy failed. Please copy it manually."
-);
+alert("Copy failed. Please copy it manually.");
 
 }
 
 }
 
 
+/* =========================
+   OPEN WHATSAPP
+========================= */
 
-/* ==============================
-   CHANGE STATUS
-============================== */
+function openWhatsApp(){
 
+if(!selectedOrder){
+
+alert("Select an order first.");
+
+return;
+
+}
+
+
+const phone=
+selectedOrder.phone
+.replace(/\D/g,"");
+
+
+if(!phone){
+
+alert("This order has no WhatsApp number.");
+
+return;
+
+}
+
+
+const message=
+document.getElementById("messageBox")
+.textContent;
+
+
+const url=
+"https://wa.me/"
++
+phone
++
+"?text="
++
+encodeURIComponent(message);
+
+
+window.open(url,"_blank");
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
 
 function changeStatus(index){
-
-const order=
-orders[index];
-
 
 const statuses=[
 "Pending",
@@ -809,186 +1132,239 @@ const statuses=[
 "Delivered"
 ];
 
+const order=orders[index];
 
 const current=
 statuses.indexOf(order.status);
 
-
-const next=
-(current+1)
-% statuses.length;
-
-
 order.status=
-statuses[next];
+statuses[
+(current+1)%statuses.length
+];
 
 
-saveOrders();
-
+saveData();
 
 displayOrders();
 
-
-updateStats();
+updateDashboard();
 
 }
 
 
-
-/* ==============================
+/* =========================
    DELETE ORDER
-============================== */
-
+========================= */
 
 function deleteOrder(index){
 
-const confirmed=
-confirm(
-"Delete this order?"
+if(!confirm("Delete this order?")) return;
+
+orders.splice(index,1);
+
+saveData();
+
+refreshAll();
+
+}
+
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+function displayCustomers(){
+
+const list=
+document.getElementById("customerList");
+
+const search=
+document.getElementById("customerSearch")
+.value.toLowerCase();
+
+
+const filtered=
+customers.filter(c=>
+c.name.toLowerCase().includes(search)
 );
 
 
-if(!confirmed){
+if(filtered.length===0){
+
+list.innerHTML=
+'<div class="empty">No customers yet.</div>';
 
 return;
 
 }
 
 
-orders.splice(index,1);
+list.innerHTML="";
 
 
-saveOrders();
+filtered.forEach(customer=>{
 
+const div=
+document.createElement("div");
 
-displayOrders();
+div.className="customer";
 
+div.innerHTML=`
 
-updateStats();
+<strong>
+👤 ${escapeHTML(customer.name)}
+</strong>
+
+<div class="detail">
+📱 ${escapeHTML(customer.phone || "No number")}
+</div>
+
+<div class="detail">
+🛍️ Orders: ${customer.orders}
+</div>
+
+<div class="detail">
+💰 Total spent: ₹${customer.spent}
+</div>
+
+`;
+
+list.appendChild(div);
+
+});
 
 }
 
 
+/* =========================
+   DASHBOARD
+========================= */
 
-/* ==============================
-   SHOP STATISTICS
-============================== */
+function updateDashboard(){
 
+document.getElementById("statProducts")
+.textContent=products.length;
 
-function updateStats(){
+document.getElementById("statCustomers")
+.textContent=customers.length;
 
-const total=
-orders.length;
-
-
-const confirmed=
-orders.filter(
-order =>
-order.status==="Confirmed" ||
-order.status==="Delivered"
-).length;
+document.getElementById("statOrders")
+.textContent=orders.length;
 
 
 const sales=
 orders.reduce(
-(sum,order)=>
-sum+order.total,
+(sum,o)=>sum+o.total,
 0
 );
 
 
-document.getElementById(
-"totalOrders"
-).textContent=
-total;
-
-
-document.getElementById(
-"confirmedOrders"
-).textContent=
-confirmed;
-
-
-document.getElementById(
-"totalSales"
-).textContent=
+document.getElementById("statSales")
+.textContent=
 "₹"+sales.toLocaleString("en-IN");
 
 }
 
 
+/* =========================
+   PRODUCT DROPDOWN
+========================= */
 
-/* ==============================
-   CLEAR FORM
-============================== */
+function loadProductDropdown(){
 
+const select=
+document.getElementById("orderProduct");
 
-function clearOrderForm(){
-
-document.getElementById(
-"customerName"
-).value="";
-
-
-document.getElementById(
-"customerPhone"
-).value="";
+select.innerHTML=
+'<option value="">Select product</option>';
 
 
-document.getElementById(
-"orderProduct"
-).value="";
+products.forEach((p,index)=>{
 
+const option=
+document.createElement("option");
 
-document.getElementById(
-"quantity"
-).value=1;
+option.value=index;
 
+option.textContent=
+`${p.name} — ₹${p.price} — Stock ${p.stock}`;
 
-document.getElementById(
-"orderStatus"
-).value="Pending";
+select.appendChild(option);
+
+});
 
 }
 
 
+/* =========================
+   CLEAR FORMS
+========================= */
 
-/* ==============================
+function clearProductForm(){
+
+document.getElementById("pName").value="";
+document.getElementById("pPrice").value="";
+document.getElementById("pMaterial").value="";
+document.getElementById("pStock").value="";
+document.getElementById("pImage").value="";
+
+}
+
+
+function clearOrderForm(){
+
+document.getElementById("customerName").value="";
+document.getElementById("customerPhone").value="";
+document.getElementById("orderProduct").value="";
+document.getElementById("orderQuantity").value=1;
+document.getElementById("orderStatus").value="Pending";
+
+}
+
+
+/* =========================
    SECURITY
-============================== */
-
+========================= */
 
 function escapeHTML(text){
 
 return String(text)
 
 .replace(/&/g,"&amp;")
-
 .replace(/</g,"&lt;")
-
 .replace(/>/g,"&gt;")
-
 .replace(/"/g,"&quot;")
-
 .replace(/'/g,"&#039;");
 
 }
 
 
+/* =========================
+   REFRESH EVERYTHING
+========================= */
 
-/* ==============================
-   START APP
-============================== */
+function refreshAll(){
 
-
-saveProducts();
-
-loadProducts();
+displayProducts();
 
 displayOrders();
 
-updateStats();
+displayCustomers();
 
+loadProductDropdown();
+
+updateDashboard();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+saveData();
+
+refreshAll();
 
 </script>
 
