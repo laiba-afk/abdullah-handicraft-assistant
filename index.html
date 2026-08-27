@@ -1,708 +1,958 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Abdullah Handicraft Assistant</title>
+<title>Abdullah Handicraft</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f3ee;
-      color: #2d2926;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    header {
-      background: #2d2926;
-      color: white;
-      text-align: center;
-      padding: 25px 15px;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f3ee;
+  color:#292522;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 27px;
-    }
+header{
+  background:#292522;
+  color:white;
+  padding:28px 18px;
+  text-align:center;
+}
 
-    header p {
-      margin: 7px 0 0;
-      color: #ddd;
-    }
+header h1{
+  margin:0;
+  font-size:28px;
+}
 
-    main {
-      max-width: 850px;
-      margin: auto;
-      padding: 20px;
-    }
+header p{
+  margin:7px 0 0;
+  color:#ddd;
+}
 
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 18px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:18px;
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 21px;
-    }
+.card{
+  background:white;
+  padding:20px;
+  margin-bottom:18px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      margin: 6px 0;
-      border: 1px solid #ddd3ca;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
-    }
+h2{
+  margin-top:0;
+}
 
-    input:focus {
-      border-color: #8b6f55;
-    }
+input,
+select,
+textarea{
+  width:100%;
+  padding:13px;
+  margin:6px 0;
+  border:1px solid #ddd4cb;
+  border-radius:10px;
+  font-size:15px;
+}
 
-    .product {
-      border: 1px solid #e5ddd5;
-      padding: 16px;
-      margin-top: 12px;
-      border-radius: 14px;
-    }
+button{
+  border:none;
+  border-radius:10px;
+  padding:12px 16px;
+  margin:6px 4px 0 0;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .product-name {
-      font-size: 19px;
-      font-weight: bold;
-    }
+.primary{
+  background:#292522;
+  color:white;
+}
 
-    .price {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 8px 0;
-    }
+.secondary{
+  background:#eee7df;
+  color:#292522;
+}
 
-    .detail {
-      margin: 6px 0;
-      color: #625b55;
-    }
+.danger{
+  background:#ead8d3;
+  color:#722b22;
+}
 
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin: 7px 5px 0 0;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.product{
+  border:1px solid #e5ddd5;
+  border-radius:15px;
+  padding:15px;
+  margin-top:12px;
+}
 
-    .primary {
-      background: #2d2926;
-      color: white;
-    }
+.product-image{
+  width:100%;
+  max-height:250px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:12px;
+}
 
-    .secondary {
-      background: #eee7df;
-      color: #2d2926;
-    }
+.product-name{
+  font-size:20px;
+  font-weight:bold;
+}
 
-    .danger {
-      background: #ead7d2;
-      color: #6d2920;
-    }
+.price{
+  font-size:22px;
+  font-weight:bold;
+  margin:8px 0;
+}
 
-    .reply-box {
-      background: #f5f1ec;
-      padding: 16px;
-      border-radius: 12px;
-      line-height: 1.6;
-      white-space: pre-wrap;
-      min-height: 100px;
-    }
+.detail{
+  color:#625b55;
+  margin:5px 0;
+}
 
-    .empty {
-      color: #777;
-      padding: 10px 0;
-    }
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#eee7df;
+  font-size:12px;
+  margin-top:5px;
+}
 
-    .small {
-      font-size: 13px;
-      color: #777;
-    }
+.available{
+  color:green;
+  font-weight:bold;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: 13px;
-    }
-  </style>
+.out{
+  color:#b3261e;
+  font-weight:bold;
+}
+
+.reply{
+  background:#f5f1ec;
+  padding:16px;
+  border-radius:12px;
+  white-space:pre-wrap;
+  line-height:1.6;
+  min-height:120px;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#777;
+  font-size:13px;
+}
+
+.empty{
+  color:#777;
+  padding:12px 0;
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Abdullah Handicraft</h1>
-    <p>Customer Assistant • Version 1</p>
-  </header>
+<header>
 
+<h1>Abdullah Handicraft</h1>
 
-  <main>
+<p>Smart Shop Assistant • Version 2</p>
 
-    <!-- PRODUCT SEARCH -->
-    <section class="card">
+</header>
 
-      <h2>🔎 Product Catalog</h2>
 
-      <input
-        type="text"
-        id="search"
-        placeholder="Search products..."
-        oninput="displayProducts()"
-      />
+<div class="container">
 
-      <div id="products"></div>
 
-    </section>
+<!-- PRODUCT SEARCH -->
 
+<section class="card">
 
-    <!-- ADD PRODUCT -->
-    <section class="card">
+<h2>🔎 Find Products</h2>
 
-      <h2>➕ Add New Product</h2>
+<input
+id="search"
+type="text"
+placeholder="Search product..."
+oninput="displayProducts()"
+>
 
-      <input
-        type="text"
-        id="productName"
-        placeholder="Product name"
-      />
+<select
+id="categoryFilter"
+onchange="displayProducts()"
+>
 
-      <input
-        type="number"
-        id="productPrice"
-        placeholder="Price (₹)"
-      />
+<option value="all">
+All Categories
+</option>
 
-      <input
-        type="text"
-        id="fabric"
-        placeholder="Fabric / Material"
-      />
+<option value="Dresses">
+Dresses
+</option>
 
-      <input
-        type="text"
-        id="top"
-        placeholder="Top measurement (optional)"
-      />
+<option value="Bedsheets">
+Bedsheets
+</option>
 
-      <input
-        type="text"
-        id="bottom"
-        placeholder="Bottom measurement (optional)"
-      />
+<option value="Sarees">
+Sarees
+</option>
 
-      <input
-        type="text"
-        id="dupatta"
-        placeholder="Dupatta measurement (optional)"
-      />
+<option value="Pillow Covers">
+Pillow Covers
+</option>
 
-      <button class="primary" onclick="addProduct()">
-        Add Product
-      </button>
+<option value="Kurti">
+Kurti
+</option>
 
-    </section>
+<option value="Plazo Set">
+Plazo Set
+</option>
 
+</select>
 
-    <!-- WHATSAPP REPLY -->
-    <section class="card">
+<div id="products"></div>
 
-      <h2>💬 WhatsApp Reply Generator</h2>
+</section>
 
-      <p class="small">
-        Select a product above to create a ready-to-send customer reply.
-      </p>
 
-      <div id="reply" class="reply-box">
-        No product selected yet.
-      </div>
+<!-- ADD PRODUCT -->
 
-      <button class="primary" onclick="copyReply()">
-        📋 Copy Reply
-      </button>
+<section class="card">
 
-    </section>
+<h2>➕ Add Product</h2>
 
-  </main>
+<input
+id="productName"
+placeholder="Product name"
+>
 
+<select id="productCategory">
 
-  <footer>
-    © 2026 Abdullah Handicraft
-  </footer>
+<option value="Dresses">
+Dresses
+</option>
 
+<option value="Bedsheets">
+Bedsheets
+</option>
 
-  <script>
+<option value="Sarees">
+Sarees
+</option>
 
-    /*
-      ------------------------------------------------
-      ABDULLAH HANDICRAFT
-      PRODUCT DATABASE
-      ------------------------------------------------
-    */
+<option value="Pillow Covers">
+Pillow Covers
+</option>
 
-    let products = JSON.parse(
-      localStorage.getItem("abdullahProducts")
-    );
+<option value="Kurti">
+Kurti
+</option>
 
+<option value="Plazo Set">
+Plazo Set
+</option>
 
-    /*
-      If there are no saved products,
-      create the first product automatically.
-    */
+</select>
 
-    if (!products) {
+<input
+id="productPrice"
+type="number"
+placeholder="Price ₹"
+>
 
-      products = [
+<input
+id="fabric"
+placeholder="Fabric / Material"
+>
 
-        {
-          name: "Cotton Light Dress",
-          price: 350,
-          fabric: "Cotton fabric",
-          top: "2.25 meters",
-          bottom: "2.25 meters",
-          dupatta: "2.25 meters"
-        }
+<input
+id="top"
+placeholder="Top measurement"
+>
 
-      ];
+<input
+id="bottom"
+placeholder="Bottom measurement"
+>
 
-      saveProducts();
-    }
+<input
+id="dupatta"
+placeholder="Dupatta measurement"
+>
 
+<input
+id="image"
+placeholder="Product image URL (optional)"
+>
 
-    let selectedProduct = null;
+<select id="stock">
 
+<option value="Available">
+Available
+</option>
 
-    /*
-      ------------------------------------------------
-      SAVE PRODUCTS
-      ------------------------------------------------
-    */
+<option value="Out of Stock">
+Out of Stock
+</option>
 
-    function saveProducts() {
+</select>
 
-      localStorage.setItem(
-        "abdullahProducts",
-        JSON.stringify(products)
-      );
+<button
+class="primary"
+onclick="addProduct()"
+>
 
-    }
+Add Product
 
+</button>
 
-    /*
-      ------------------------------------------------
-      DISPLAY PRODUCTS
-      ------------------------------------------------
-    */
+</section>
 
-    function displayProducts() {
 
-      const container =
-        document.getElementById("products");
+<!-- WHATSAPP ASSISTANT -->
 
-      const search =
-        document.getElementById("search")
-        .value
-        .toLowerCase();
+<section class="card">
 
+<h2>💬 Customer Reply Assistant</h2>
 
-      const filteredProducts =
-        products.filter(product =>
-          product.name.toLowerCase().includes(search)
-        );
+<select id="replyType">
 
+<option value="details">
+Product Details
+</option>
 
-      if (filteredProducts.length === 0) {
+<option value="price">
+Price Reply
+</option>
 
-        container.innerHTML =
-          `<div class="empty">
-             No products found.
-           </div>`;
+<option value="availability">
+Availability Reply
+</option>
 
-        return;
-      }
+<option value="order">
+Order Reply
+</option>
 
+<option value="delivery">
+Delivery Reply
+</option>
 
-      container.innerHTML = "";
+</select>
 
+<div
+id="reply"
+class="reply"
+>
 
-      filteredProducts.forEach((product) => {
+Select a product to generate a reply.
 
-        const originalIndex =
-          products.indexOf(product);
+</div>
 
+<button
+class="primary"
+onclick="copyReply()"
+>
 
-        const productDiv =
-          document.createElement("div");
+📋 Copy Reply
 
-        productDiv.className = "product";
+</button>
 
+</section>
 
-        productDiv.innerHTML = `
 
-          <div class="product-name">
-            ${escapeHTML(product.name)}
-          </div>
+</div>
 
-          <div class="price">
-            ₹${Number(product.price).toLocaleString("en-IN")}
-          </div>
 
-          <div class="detail">
-            🧵 Material:
-            ${escapeHTML(product.fabric || "Not specified")}
-          </div>
+<footer>
 
-          ${
-            product.top
-            ? `<div class="detail">
-                 👕 Top:
-                 ${escapeHTML(product.top)}
-               </div>`
-            : ""
-          }
+© 2026 Abdullah Handicraft
 
-          ${
-            product.bottom
-            ? `<div class="detail">
-                 👖 Bottom:
-                 ${escapeHTML(product.bottom)}
-               </div>`
-            : ""
-          }
+</footer>
 
-          ${
-            product.dupatta
-            ? `<div class="detail">
-                 🧣 Dupatta:
-                 ${escapeHTML(product.dupatta)}
-               </div>`
-            : ""
-          }
 
-          <button
-            class="primary"
-            onclick="generateReply(${originalIndex})"
-          >
-            💬 Generate Reply
-          </button>
+<script>
 
-          <button
-            class="danger"
-            onclick="deleteProduct(${originalIndex})"
-          >
-            🗑 Delete
-          </button>
 
-        `;
+/* ===========================
+   PRODUCT DATABASE
+=========================== */
 
 
-        container.appendChild(productDiv);
+let products =
+JSON.parse(
+localStorage.getItem("abdullahProducts")
+);
 
-      });
 
-    }
+if(!products){
 
+products=[
 
-    /*
-      ------------------------------------------------
-      GENERATE WHATSAPP REPLY
-      ------------------------------------------------
-    */
+{
 
-    function generateReply(index) {
+name:"Cotton Light Dress",
 
-      selectedProduct = products[index];
+category:"Dresses",
 
-      const product = selectedProduct;
+price:350,
 
+fabric:"Cotton fabric",
 
-      let reply = `Hi 😊
+top:"2.25 meters",
 
-${product.name}
+bottom:"2.25 meters",
+
+dupatta:"2.25 meters",
+
+image:"",
+
+stock:"Available"
+
+}
+
+];
+
+saveProducts();
+
+}
+
+
+let selectedProduct=null;
+
+
+/* ===========================
+   SAVE
+=========================== */
+
+
+function saveProducts(){
+
+localStorage.setItem(
+"abdullahProducts",
+JSON.stringify(products)
+);
+
+}
+
+
+/* ===========================
+   DISPLAY
+=========================== */
+
+
+function displayProducts(){
+
+const container=
+document.getElementById("products");
+
+const search=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const category=
+document.getElementById("categoryFilter")
+.value;
+
+
+const filtered=
+products.filter(product=>{
+
+const matchesSearch=
+product.name
+.toLowerCase()
+.includes(search);
+
+const matchesCategory=
+category==="all" ||
+product.category===category;
+
+return matchesSearch &&
+matchesCategory;
+
+});
+
+
+if(filtered.length===0){
+
+container.innerHTML=
+'<div class="empty">No products found.</div>';
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+filtered.forEach(product=>{
+
+const index=
+products.indexOf(product);
+
+
+const div=
+document.createElement("div");
+
+div.className="product";
+
+
+let imageHTML="";
+
+if(product.image){
+
+imageHTML=
+`
+<img
+class="product-image"
+src="${escapeHTML(product.image)}"
+alt="${escapeHTML(product.name)}"
+onerror="this.style.display='none'"
+>
+`;
+
+}
+
+
+div.innerHTML=`
+
+${imageHTML}
+
+<div class="product-name">
+
+${escapeHTML(product.name)}
+
+</div>
+
+<div class="badge">
+
+${escapeHTML(product.category)}
+
+</div>
+
+<div class="price">
+
+₹${Number(product.price)
+.toLocaleString("en-IN")}
+
+</div>
+
+<div class="detail">
+
+🧵 Material:
+${escapeHTML(product.fabric || "Not specified")}
+
+</div>
+
+${
+product.top
+?
+`<div class="detail">
+👕 Top: ${escapeHTML(product.top)}
+</div>`
+:""
+}
+
+${
+product.bottom
+?
+`<div class="detail">
+👖 Bottom: ${escapeHTML(product.bottom)}
+</div>`
+:""
+}
+
+${
+product.dupatta
+?
+`<div class="detail">
+🧣 Dupatta: ${escapeHTML(product.dupatta)}
+</div>`
+:""
+}
+
+<div class="${
+product.stock==="Available"
+?
+"available"
+:
+"out"
+}">
+
+${
+product.stock==="Available"
+?
+"● Available"
+:
+"● Out of Stock"
+}
+
+</div>
+
+
+<button
+class="primary"
+onclick="generateReply(${index})"
+>
+
+💬 Generate Reply
+
+</button>
+
+
+<button
+class="danger"
+onclick="deleteProduct(${index})"
+>
+
+🗑 Delete
+
+</button>
+
+`;
+
+
+container.appendChild(div);
+
+});
+
+}
+
+
+/* ===========================
+   GENERATE REPLY
+=========================== */
+
+
+function generateReply(index){
+
+selectedProduct=
+products[index];
+
+const product=
+selectedProduct;
+
+const type=
+document.getElementById("replyType")
+.value;
+
+
+let reply="";
+
+
+if(type==="details"){
+
+reply=
+`Hi 😊
+
+Here are the details of our ${product.name}:
+
+💰 Price: ₹${product.price}
+🧵 Fabric: ${product.fabric || "Not specified"}
+${product.top ? "👕 Top: "+product.top : ""}
+${product.bottom ? "👖 Bottom: "+product.bottom : ""}
+${product.dupatta ? "🧣 Dupatta: "+product.dupatta : ""}
+📦 Availability: ${product.stock}
+
+If you'd like to order, please let us know. 😊`;
+
+}
+
+
+if(type==="price"){
+
+reply=
+`Hi 😊
+
+The price of our ${product.name} is ₹${product.price}.
+
+Please let us know if you'd like to order. 🛍️`;
+
+}
+
+
+if(type==="availability"){
+
+reply=
+`Hi 😊
+
+${product.name} is currently ${
+product.stock==="Available"
+?
+"available"
+:
+"out of stock"
+}.
+
+Please let us know if you need any other details.`;
+
+}
+
+
+if(type==="order"){
+
+reply=
+`Hi 😊
+
+Thank you for your interest in ${product.name}.
 
 Price: ₹${product.price}
 
-Fabric: ${product.fabric || "Not specified"}`;
+To place an order, please send your required product details and delivery information.
 
-      if (product.top) {
+Thank you for shopping with Abdullah Handicraft! 🛍️`;
 
-        reply +=
-          `\nTop: ${product.top}`;
+}
 
-      }
 
-      if (product.bottom) {
+if(type==="delivery"){
 
-        reply +=
-          `\nBottom: ${product.bottom}`;
+reply=
+`Hi 😊
 
-      }
+Your ${product.name} can be ordered through Abdullah Handicraft.
 
-      if (product.dupatta) {
+For delivery details and charges, please share your location with us so we can confirm the available delivery option.
 
-        reply +=
-          `\nDupatta: ${product.dupatta}`;
+Thank you! ❤️`;
 
-      }
+}
 
 
-      reply += `
+document.getElementById("reply")
+.textContent=reply;
 
-If you'd like to order, please message us. 😊`;
+document.getElementById("reply")
+.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
 
+}
 
-      document.getElementById("reply")
-        .textContent = reply;
 
+/* ===========================
+   COPY
+=========================== */
 
-      document.getElementById("reply")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
 
-    }
+async function copyReply(){
 
+const text=
+document.getElementById("reply")
+.textContent;
 
-    /*
-      ------------------------------------------------
-      COPY WHATSAPP REPLY
-      ------------------------------------------------
-    */
+if(
+text===
+"Select a product to generate a reply."
+){
 
-    async function copyReply() {
+alert("Please select a product first.");
 
-      const reply =
-        document.getElementById("reply")
-        .textContent;
+return;
 
+}
 
-      if (
-        reply === "No product selected yet."
-      ) {
 
-        alert(
-          "Please select a product first."
-        );
+try{
 
-        return;
-      }
+await navigator.clipboard.writeText(text);
 
+alert("Reply copied! 📋");
 
-      try {
+}
 
-        await navigator.clipboard.writeText(reply);
+catch(error){
 
-        alert(
-          "Reply copied! 📋"
-        );
+alert(
+"Copy failed. Please copy the text manually."
+);
 
-      }
+}
 
-      catch (error) {
+}
 
-        alert(
-          "Copy failed. Please select the text manually."
-        );
 
-      }
+/* ===========================
+   ADD PRODUCT
+=========================== */
 
-    }
 
+function addProduct(){
 
-    /*
-      ------------------------------------------------
-      ADD PRODUCT
-      ------------------------------------------------
-    */
+const product={
 
-    function addProduct() {
+name:
+document.getElementById("productName")
+.value.trim(),
 
-      const name =
-        document.getElementById("productName")
-        .value
-        .trim();
+category:
+document.getElementById("productCategory")
+.value,
 
-      const price =
-        document.getElementById("productPrice")
-        .value;
+price:
+Number(
+document.getElementById("productPrice")
+.value
+),
 
-      const fabric =
-        document.getElementById("fabric")
-        .value
-        .trim();
+fabric:
+document.getElementById("fabric")
+.value.trim(),
 
-      const top =
-        document.getElementById("top")
-        .value
-        .trim();
+top:
+document.getElementById("top")
+.value.trim(),
 
-      const bottom =
-        document.getElementById("bottom")
-        .value
-        .trim();
+bottom:
+document.getElementById("bottom")
+.value.trim(),
 
-      const dupatta =
-        document.getElementById("dupatta")
-        .value
-        .trim();
+dupatta:
+document.getElementById("dupatta")
+.value.trim(),
 
+image:
+document.getElementById("image")
+.value.trim(),
 
-      if (!name || !price) {
+stock:
+document.getElementById("stock")
+.value
 
-        alert(
-          "Please enter the product name and price."
-        );
+};
 
-        return;
-      }
 
+if(
+!product.name ||
+!product.price
+){
 
-      const newProduct = {
+alert(
+"Please enter product name and price."
+);
 
-        name: name,
+return;
 
-        price: Number(price),
+}
 
-        fabric: fabric,
 
-        top: top,
+products.push(product);
 
-        bottom: bottom,
+saveProducts();
 
-        dupatta: dupatta
+displayProducts();
 
-      };
+clearForm();
 
+alert(
+"Product added successfully! 🎉"
+);
 
-      products.push(newProduct);
+}
 
 
-      saveProducts();
+/* ===========================
+   CLEAR FORM
+=========================== */
 
 
-      displayProducts();
+function clearForm(){
 
+document.getElementById("productName")
+.value="";
 
-      clearForm();
+document.getElementById("productPrice")
+.value="";
 
+document.getElementById("fabric")
+.value="";
 
-      alert(
-        "Product added successfully! 🎉"
-      );
+document.getElementById("top")
+.value="";
 
-    }
+document.getElementById("bottom")
+.value="";
 
+document.getElementById("dupatta")
+.value="";
 
-    /*
-      ------------------------------------------------
-      CLEAR FORM
-      ------------------------------------------------
-    */
+document.getElementById("image")
+.value="";
 
-    function clearForm() {
+}
 
-      document.getElementById("productName")
-        .value = "";
 
-      document.getElementById("productPrice")
-        .value = "";
+/* ===========================
+   DELETE
+=========================== */
 
-      document.getElementById("fabric")
-        .value = "";
 
-      document.getElementById("top")
-        .value = "";
+function deleteProduct(index){
 
-      document.getElementById("bottom")
-        .value = "";
+const confirmed=
+confirm(
+`Delete "${products[index].name}"?`
+);
 
-      document.getElementById("dupatta")
-        .value = "";
 
-    }
+if(!confirmed){
 
+return;
 
-    /*
-      ------------------------------------------------
-      DELETE PRODUCT
-      ------------------------------------------------
-    */
+}
 
-    function deleteProduct(index) {
 
-      const product =
-        products[index];
+products.splice(index,1);
 
+saveProducts();
 
-      const confirmed =
-        confirm(
-          `Delete "${product.name}"?`
-        );
+displayProducts();
 
+}
 
-      if (!confirmed) {
 
-        return;
+/* ===========================
+   SECURITY
+=========================== */
 
-      }
 
+function escapeHTML(text){
 
-      products.splice(index, 1);
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
+}
 
-      saveProducts();
 
+/* ===========================
+   START
+=========================== */
 
-      displayProducts();
 
-    }
+displayProducts();
 
-
-    /*
-      ------------------------------------------------
-      SECURITY
-      Prevent HTML injection from product names.
-      ------------------------------------------------
-    */
-
-    function escapeHTML(text) {
-
-      return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
-
-
-    /*
-      ------------------------------------------------
-      START APP
-      ------------------------------------------------
-    */
-
-    displayProducts();
-
-  </script>
+</script>
 
 </body>
 </html>
