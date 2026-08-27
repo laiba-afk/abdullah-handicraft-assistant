@@ -4,160 +4,162 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Abdullah Handicraft</title>
+<title>Abdullah Handicraft - Shop Manager</title>
 
 <style>
 
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f7f3ee;
-  color:#292522;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f7f3ee;
+color:#292522;
 }
 
 header{
-  background:#292522;
-  color:white;
-  padding:28px 18px;
-  text-align:center;
+background:#292522;
+color:white;
+padding:28px 18px;
+text-align:center;
 }
 
 header h1{
-  margin:0;
-  font-size:28px;
+margin:0;
+font-size:28px;
 }
 
 header p{
-  margin:7px 0 0;
-  color:#ddd;
+margin:7px 0 0;
+color:#ddd;
 }
 
 .container{
-  max-width:950px;
-  margin:auto;
-  padding:18px;
+max-width:1000px;
+margin:auto;
+padding:18px;
 }
 
 .card{
-  background:white;
-  padding:20px;
-  margin-bottom:18px;
-  border-radius:18px;
-  box-shadow:0 5px 20px rgba(0,0,0,.07);
+background:white;
+padding:20px;
+margin-bottom:18px;
+border-radius:18px;
+box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 h2{
-  margin-top:0;
+margin-top:0;
 }
 
 input,
-select,
-textarea{
-  width:100%;
-  padding:13px;
-  margin:6px 0;
-  border:1px solid #ddd4cb;
-  border-radius:10px;
-  font-size:15px;
+select{
+width:100%;
+padding:13px;
+margin:6px 0;
+border:1px solid #ddd4cb;
+border-radius:10px;
+font-size:15px;
 }
 
 button{
-  border:none;
-  border-radius:10px;
-  padding:12px 16px;
-  margin:6px 4px 0 0;
-  font-weight:bold;
-  cursor:pointer;
+border:none;
+border-radius:10px;
+padding:12px 16px;
+margin:6px 4px 0 0;
+font-weight:bold;
+cursor:pointer;
 }
 
 .primary{
-  background:#292522;
-  color:white;
+background:#292522;
+color:white;
 }
 
 .secondary{
-  background:#eee7df;
-  color:#292522;
+background:#eee7df;
+color:#292522;
 }
 
 .danger{
-  background:#ead8d3;
-  color:#722b22;
+background:#ead8d3;
+color:#722b22;
 }
 
-.product{
-  border:1px solid #e5ddd5;
-  border-radius:15px;
-  padding:15px;
-  margin-top:12px;
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
 }
 
-.product-image{
-  width:100%;
-  max-height:250px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:12px;
+.stat{
+background:#f5f1ec;
+padding:16px;
+border-radius:14px;
+text-align:center;
 }
 
-.product-name{
-  font-size:20px;
-  font-weight:bold;
+.stat strong{
+display:block;
+font-size:24px;
+margin-top:5px;
 }
 
-.price{
-  font-size:22px;
-  font-weight:bold;
-  margin:8px 0;
+.order{
+border:1px solid #e5ddd5;
+border-radius:14px;
+padding:16px;
+margin-top:12px;
 }
 
-.detail{
-  color:#625b55;
-  margin:5px 0;
+.order h3{
+margin:0 0 8px;
 }
 
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:20px;
-  background:#eee7df;
-  font-size:12px;
-  margin-top:5px;
+.status{
+display:inline-block;
+padding:5px 10px;
+border-radius:20px;
+background:#eee7df;
+font-size:12px;
+margin-top:7px;
 }
 
-.available{
-  color:green;
-  font-weight:bold;
-}
-
-.out{
-  color:#b3261e;
-  font-weight:bold;
+.total{
+font-size:20px;
+font-weight:bold;
+margin-top:8px;
 }
 
 .reply{
-  background:#f5f1ec;
-  padding:16px;
-  border-radius:12px;
-  white-space:pre-wrap;
-  line-height:1.6;
-  min-height:120px;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#777;
-  font-size:13px;
+background:#f5f1ec;
+padding:16px;
+border-radius:12px;
+white-space:pre-wrap;
+line-height:1.6;
+min-height:120px;
 }
 
 .empty{
-  color:#777;
-  padding:12px 0;
+color:#777;
+padding:10px 0;
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+font-size:13px;
+}
+
+@media(max-width:650px){
+
+.stats{
+grid-template-columns:1fr;
+}
+
 }
 
 </style>
@@ -165,11 +167,12 @@ footer{
 
 <body>
 
+
 <header>
 
 <h1>Abdullah Handicraft</h1>
 
-<p>Smart Shop Assistant • Version 2</p>
+<p>Smart Shop Manager • Version 3</p>
 
 </header>
 
@@ -177,205 +180,173 @@ footer{
 <div class="container">
 
 
-<!-- PRODUCT SEARCH -->
+<!-- SALES SUMMARY -->
 
 <section class="card">
 
-<h2>🔎 Find Products</h2>
+<h2>📊 Shop Summary</h2>
 
-<input
-id="search"
-type="text"
-placeholder="Search product..."
-oninput="displayProducts()"
->
+<div class="stats">
 
-<select
-id="categoryFilter"
-onchange="displayProducts()"
->
+<div class="stat">
 
-<option value="all">
-All Categories
-</option>
+Orders
 
-<option value="Dresses">
-Dresses
-</option>
+<strong id="totalOrders">
+0
+</strong>
 
-<option value="Bedsheets">
-Bedsheets
-</option>
+</div>
 
-<option value="Sarees">
-Sarees
-</option>
 
-<option value="Pillow Covers">
-Pillow Covers
-</option>
+<div class="stat">
 
-<option value="Kurti">
-Kurti
-</option>
+Confirmed
 
-<option value="Plazo Set">
-Plazo Set
-</option>
+<strong id="confirmedOrders">
+0
+</strong>
 
-</select>
+</div>
 
-<div id="products"></div>
+
+<div class="stat">
+
+Sales
+
+<strong id="totalSales">
+₹0
+</strong>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- ADD PRODUCT -->
+
+<!-- ADD ORDER -->
 
 <section class="card">
 
-<h2>➕ Add Product</h2>
+<h2>➕ Create New Order</h2>
+
 
 <input
-id="productName"
-placeholder="Product name"
+id="customerName"
+placeholder="Customer name"
 >
 
-<select id="productCategory">
 
-<option value="Dresses">
-Dresses
-</option>
+<input
+id="customerPhone"
+placeholder="Customer WhatsApp number"
+>
 
-<option value="Bedsheets">
-Bedsheets
-</option>
 
-<option value="Sarees">
-Sarees
-</option>
+<select id="orderProduct">
 
-<option value="Pillow Covers">
-Pillow Covers
-</option>
-
-<option value="Kurti">
-Kurti
-</option>
-
-<option value="Plazo Set">
-Plazo Set
+<option value="">
+Select product
 </option>
 
 </select>
 
+
 <input
-id="productPrice"
+id="quantity"
 type="number"
-placeholder="Price ₹"
+value="1"
+min="1"
+placeholder="Quantity"
 >
 
-<input
-id="fabric"
-placeholder="Fabric / Material"
->
 
-<input
-id="top"
-placeholder="Top measurement"
->
+<select id="orderStatus">
 
-<input
-id="bottom"
-placeholder="Bottom measurement"
->
-
-<input
-id="dupatta"
-placeholder="Dupatta measurement"
->
-
-<input
-id="image"
-placeholder="Product image URL (optional)"
->
-
-<select id="stock">
-
-<option value="Available">
-Available
+<option value="Pending">
+Pending
 </option>
 
-<option value="Out of Stock">
-Out of Stock
+<option value="Confirmed">
+Confirmed
+</option>
+
+<option value="Delivered">
+Delivered
 </option>
 
 </select>
+
 
 <button
 class="primary"
-onclick="addProduct()"
+onclick="createOrder()"
 >
 
-Add Product
+Create Order
 
 </button>
+
 
 </section>
 
 
-<!-- WHATSAPP ASSISTANT -->
+
+<!-- ORDERS -->
 
 <section class="card">
 
-<h2>💬 Customer Reply Assistant</h2>
+<h2>📦 Orders</h2>
 
-<select id="replyType">
 
-<option value="details">
-Product Details
-</option>
+<input
+id="orderSearch"
+placeholder="Search customer or product..."
+oninput="displayOrders()"
+>
 
-<option value="price">
-Price Reply
-</option>
 
-<option value="availability">
-Availability Reply
-</option>
+<div id="orders"></div>
 
-<option value="order">
-Order Reply
-</option>
 
-<option value="delivery">
-Delivery Reply
-</option>
+</section>
 
-</select>
+
+
+<!-- WHATSAPP -->
+
+<section class="card">
+
+<h2>💬 WhatsApp Order Message</h2>
+
 
 <div
 id="reply"
 class="reply"
 >
 
-Select a product to generate a reply.
+Select an order to generate a message.
 
 </div>
+
 
 <button
 class="primary"
 onclick="copyReply()"
 >
 
-📋 Copy Reply
+📋 Copy Message
 
 </button>
+
 
 </section>
 
 
 </div>
+
 
 
 <footer>
@@ -385,59 +356,47 @@ onclick="copyReply()"
 </footer>
 
 
+
 <script>
 
 
-/* ===========================
-   PRODUCT DATABASE
-=========================== */
+/* ==============================
+   DATABASE
+============================== */
 
 
 let products =
 JSON.parse(
 localStorage.getItem("abdullahProducts")
-);
-
-
-if(!products){
-
-products=[
+) || [
 
 {
-
 name:"Cotton Light Dress",
-
 category:"Dresses",
-
 price:350,
-
 fabric:"Cotton fabric",
-
 top:"2.25 meters",
-
 bottom:"2.25 meters",
-
 dupatta:"2.25 meters",
-
-image:"",
-
 stock:"Available"
-
 }
 
 ];
 
-saveProducts();
 
-}
+let orders =
+JSON.parse(
+localStorage.getItem("abdullahOrders")
+) || [];
 
 
-let selectedProduct=null;
+let selectedOrder=null;
 
 
-/* ===========================
+
+/* ==============================
    SAVE
-=========================== */
+============================== */
 
 
 function saveProducts(){
@@ -450,48 +409,198 @@ JSON.stringify(products)
 }
 
 
-/* ===========================
-   DISPLAY
-=========================== */
+function saveOrders(){
+
+localStorage.setItem(
+"abdullahOrders",
+JSON.stringify(orders)
+);
+
+}
 
 
-function displayProducts(){
 
-const container=
-document.getElementById("products");
+/* ==============================
+   PRODUCT DROPDOWN
+============================== */
 
-const search=
-document.getElementById("search")
-.value
-.toLowerCase();
 
-const category=
-document.getElementById("categoryFilter")
+function loadProducts(){
+
+const select=
+document.getElementById("orderProduct");
+
+select.innerHTML=
+'<option value="">Select product</option>';
+
+
+products.forEach((product,index)=>{
+
+const option=
+document.createElement("option");
+
+option.value=index;
+
+option.textContent=
+`${product.name} - ₹${product.price}`;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+
+/* ==============================
+   CREATE ORDER
+============================== */
+
+
+function createOrder(){
+
+const customerName=
+document.getElementById("customerName")
+.value.trim();
+
+
+const phone=
+document.getElementById("customerPhone")
+.value.trim();
+
+
+const productIndex=
+document.getElementById("orderProduct")
 .value;
 
 
+const quantity=
+Number(
+document.getElementById("quantity")
+.value
+);
+
+
+const status=
+document.getElementById("orderStatus")
+.value;
+
+
+if(
+!customerName ||
+!productIndex ||
+!quantity
+){
+
+alert(
+"Please enter customer name, product and quantity."
+);
+
+return;
+
+}
+
+
+const product=
+products[productIndex];
+
+
+const total=
+product.price * quantity;
+
+
+const order={
+
+id:
+Date.now(),
+
+customer:
+customerName,
+
+phone:
+phone,
+
+product:
+product.name,
+
+price:
+product.price,
+
+quantity:
+quantity,
+
+total:
+total,
+
+status:
+status,
+
+date:
+new Date().toLocaleDateString("en-IN")
+
+};
+
+
+orders.unshift(order);
+
+
+saveOrders();
+
+
+displayOrders();
+
+
+updateStats();
+
+
+clearOrderForm();
+
+
+alert(
+"Order created successfully! 🎉"
+);
+
+}
+
+
+
+/* ==============================
+   DISPLAY ORDERS
+============================== */
+
+
+function displayOrders(){
+
+const container=
+document.getElementById("orders");
+
+
+const search=
+document.getElementById("orderSearch")
+.value
+.toLowerCase();
+
+
 const filtered=
-products.filter(product=>{
+orders.filter(order=>
 
-const matchesSearch=
-product.name
+order.customer
 .toLowerCase()
-.includes(search);
+.includes(search)
 
-const matchesCategory=
-category==="all" ||
-product.category===category;
+||
 
-return matchesSearch &&
-matchesCategory;
+order.product
+.toLowerCase()
+.includes(search)
 
-});
+);
 
 
 if(filtered.length===0){
 
 container.innerHTML=
-'<div class="empty">No products found.</div>';
+'<div class="empty">No orders found.</div>';
 
 return;
 
@@ -501,124 +610,78 @@ return;
 container.innerHTML="";
 
 
-filtered.forEach(product=>{
+filtered.forEach(order=>{
 
 const index=
-products.indexOf(product);
+orders.indexOf(order);
 
 
 const div=
 document.createElement("div");
 
-div.className="product";
 
-
-let imageHTML="";
-
-if(product.image){
-
-imageHTML=
-`
-<img
-class="product-image"
-src="${escapeHTML(product.image)}"
-alt="${escapeHTML(product.name)}"
-onerror="this.style.display='none'"
->
-`;
-
-}
+div.className="order";
 
 
 div.innerHTML=`
 
-${imageHTML}
+<h3>
+👤 ${escapeHTML(order.customer)}
+</h3>
 
-<div class="product-name">
-
-${escapeHTML(product.name)}
-
+<div>
+📱 ${escapeHTML(order.phone || "No number")}
 </div>
 
-<div class="badge">
-
-${escapeHTML(product.category)}
-
+<div>
+🛍️ ${escapeHTML(order.product)}
 </div>
 
-<div class="price">
-
-₹${Number(product.price)
-.toLocaleString("en-IN")}
-
+<div>
+🔢 Quantity: ${order.quantity}
 </div>
 
-<div class="detail">
-
-🧵 Material:
-${escapeHTML(product.fabric || "Not specified")}
-
+<div>
+💵 Price: ₹${order.price}
 </div>
 
-${
-product.top
-?
-`<div class="detail">
-👕 Top: ${escapeHTML(product.top)}
-</div>`
-:""
-}
-
-${
-product.bottom
-?
-`<div class="detail">
-👖 Bottom: ${escapeHTML(product.bottom)}
-</div>`
-:""
-}
-
-${
-product.dupatta
-?
-`<div class="detail">
-🧣 Dupatta: ${escapeHTML(product.dupatta)}
-</div>`
-:""
-}
-
-<div class="${
-product.stock==="Available"
-?
-"available"
-:
-"out"
-}">
-
-${
-product.stock==="Available"
-?
-"● Available"
-:
-"● Out of Stock"
-}
-
+<div class="total">
+Total: ₹${order.total}
 </div>
 
+<div>
+📅 ${order.date}
+</div>
+
+<div class="status">
+${escapeHTML(order.status)}
+</div>
+
+<br>
 
 <button
 class="primary"
-onclick="generateReply(${index})"
+onclick="generateOrderMessage(${index})"
 >
 
-💬 Generate Reply
+💬 WhatsApp Message
+
+</button>
+
+
+<button
+class="secondary"
+onclick="changeStatus(${index})"
+>
+
+🔄 Change Status
 
 </button>
 
 
 <button
 class="danger"
-onclick="deleteProduct(${index})"
+onclick="deleteOrder(${index})"
 >
 
 🗑 Delete
@@ -635,108 +698,41 @@ container.appendChild(div);
 }
 
 
-/* ===========================
-   GENERATE REPLY
-=========================== */
+
+/* ==============================
+   WHATSAPP MESSAGE
+============================== */
 
 
-function generateReply(index){
+function generateOrderMessage(index){
 
-selectedProduct=
-products[index];
-
-const product=
-selectedProduct;
-
-const type=
-document.getElementById("replyType")
-.value;
+selectedOrder=
+orders[index];
 
 
-let reply="";
+const order=
+selectedOrder;
 
 
-if(type==="details"){
+const message=
 
-reply=
-`Hi 😊
+`Hi ${order.customer} 😊
 
-Here are the details of our ${product.name}:
+Thank you for your order from Abdullah Handicraft! 🛍️
 
-💰 Price: ₹${product.price}
-🧵 Fabric: ${product.fabric || "Not specified"}
-${product.top ? "👕 Top: "+product.top : ""}
-${product.bottom ? "👖 Bottom: "+product.bottom : ""}
-${product.dupatta ? "🧣 Dupatta: "+product.dupatta : ""}
-📦 Availability: ${product.stock}
+Product: ${order.product}
+Quantity: ${order.quantity}
+Total: ₹${order.total}
 
-If you'd like to order, please let us know. 😊`;
+Order status: ${order.status}
 
-}
-
-
-if(type==="price"){
-
-reply=
-`Hi 😊
-
-The price of our ${product.name} is ₹${product.price}.
-
-Please let us know if you'd like to order. 🛍️`;
-
-}
-
-
-if(type==="availability"){
-
-reply=
-`Hi 😊
-
-${product.name} is currently ${
-product.stock==="Available"
-?
-"available"
-:
-"out of stock"
-}.
-
-Please let us know if you need any other details.`;
-
-}
-
-
-if(type==="order"){
-
-reply=
-`Hi 😊
-
-Thank you for your interest in ${product.name}.
-
-Price: ₹${product.price}
-
-To place an order, please send your required product details and delivery information.
-
-Thank you for shopping with Abdullah Handicraft! 🛍️`;
-
-}
-
-
-if(type==="delivery"){
-
-reply=
-`Hi 😊
-
-Your ${product.name} can be ordered through Abdullah Handicraft.
-
-For delivery details and charges, please share your location with us so we can confirm the available delivery option.
-
-Thank you! ❤️`;
-
-}
+Thank you for shopping with us! ❤️`;
 
 
 document.getElementById("reply")
-.textContent=reply;
+.textContent=
+message;
+
 
 document.getElementById("reply")
 .scrollIntoView({
@@ -747,9 +743,10 @@ block:"center"
 }
 
 
-/* ===========================
-   COPY
-=========================== */
+
+/* ==============================
+   COPY MESSAGE
+============================== */
 
 
 async function copyReply(){
@@ -758,12 +755,15 @@ const text=
 document.getElementById("reply")
 .textContent;
 
+
 if(
 text===
-"Select a product to generate a reply."
+"Select an order to generate a message."
 ){
 
-alert("Please select a product first.");
+alert(
+"Please select an order first."
+);
 
 return;
 
@@ -774,14 +774,16 @@ try{
 
 await navigator.clipboard.writeText(text);
 
-alert("Reply copied! 📋");
+alert(
+"Message copied! 📋"
+);
 
 }
 
 catch(error){
 
 alert(
-"Copy failed. Please copy the text manually."
+"Copy failed. Please copy it manually."
 );
 
 }
@@ -789,126 +791,60 @@ alert(
 }
 
 
-/* ===========================
-   ADD PRODUCT
-=========================== */
+
+/* ==============================
+   CHANGE STATUS
+============================== */
 
 
-function addProduct(){
+function changeStatus(index){
 
-const product={
-
-name:
-document.getElementById("productName")
-.value.trim(),
-
-category:
-document.getElementById("productCategory")
-.value,
-
-price:
-Number(
-document.getElementById("productPrice")
-.value
-),
-
-fabric:
-document.getElementById("fabric")
-.value.trim(),
-
-top:
-document.getElementById("top")
-.value.trim(),
-
-bottom:
-document.getElementById("bottom")
-.value.trim(),
-
-dupatta:
-document.getElementById("dupatta")
-.value.trim(),
-
-image:
-document.getElementById("image")
-.value.trim(),
-
-stock:
-document.getElementById("stock")
-.value
-
-};
+const order=
+orders[index];
 
 
-if(
-!product.name ||
-!product.price
-){
+const statuses=[
+"Pending",
+"Confirmed",
+"Delivered"
+];
 
-alert(
-"Please enter product name and price."
-);
 
-return;
+const current=
+statuses.indexOf(order.status);
+
+
+const next=
+(current+1)
+% statuses.length;
+
+
+order.status=
+statuses[next];
+
+
+saveOrders();
+
+
+displayOrders();
+
+
+updateStats();
 
 }
 
 
-products.push(product);
 
-saveProducts();
-
-displayProducts();
-
-clearForm();
-
-alert(
-"Product added successfully! 🎉"
-);
-
-}
+/* ==============================
+   DELETE ORDER
+============================== */
 
 
-/* ===========================
-   CLEAR FORM
-=========================== */
-
-
-function clearForm(){
-
-document.getElementById("productName")
-.value="";
-
-document.getElementById("productPrice")
-.value="";
-
-document.getElementById("fabric")
-.value="";
-
-document.getElementById("top")
-.value="";
-
-document.getElementById("bottom")
-.value="";
-
-document.getElementById("dupatta")
-.value="";
-
-document.getElementById("image")
-.value="";
-
-}
-
-
-/* ===========================
-   DELETE
-=========================== */
-
-
-function deleteProduct(index){
+function deleteOrder(index){
 
 const confirmed=
 confirm(
-`Delete "${products[index].name}"?`
+"Delete this order?"
 );
 
 
@@ -919,38 +855,140 @@ return;
 }
 
 
-products.splice(index,1);
+orders.splice(index,1);
 
-saveProducts();
 
-displayProducts();
+saveOrders();
+
+
+displayOrders();
+
+
+updateStats();
 
 }
 
 
-/* ===========================
+
+/* ==============================
+   SHOP STATISTICS
+============================== */
+
+
+function updateStats(){
+
+const total=
+orders.length;
+
+
+const confirmed=
+orders.filter(
+order =>
+order.status==="Confirmed" ||
+order.status==="Delivered"
+).length;
+
+
+const sales=
+orders.reduce(
+(sum,order)=>
+sum+order.total,
+0
+);
+
+
+document.getElementById(
+"totalOrders"
+).textContent=
+total;
+
+
+document.getElementById(
+"confirmedOrders"
+).textContent=
+confirmed;
+
+
+document.getElementById(
+"totalSales"
+).textContent=
+"₹"+sales.toLocaleString("en-IN");
+
+}
+
+
+
+/* ==============================
+   CLEAR FORM
+============================== */
+
+
+function clearOrderForm(){
+
+document.getElementById(
+"customerName"
+).value="";
+
+
+document.getElementById(
+"customerPhone"
+).value="";
+
+
+document.getElementById(
+"orderProduct"
+).value="";
+
+
+document.getElementById(
+"quantity"
+).value=1;
+
+
+document.getElementById(
+"orderStatus"
+).value="Pending";
+
+}
+
+
+
+/* ==============================
    SECURITY
-=========================== */
+============================== */
 
 
 function escapeHTML(text){
 
 return String(text)
+
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
 
 }
 
 
-/* ===========================
-   START
-=========================== */
+
+/* ==============================
+   START APP
+============================== */
 
 
-displayProducts();
+saveProducts();
+
+loadProducts();
+
+displayOrders();
+
+updateStats();
+
 
 </script>
 
